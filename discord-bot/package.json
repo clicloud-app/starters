@@ -1,0 +1,11 @@
+{
+  "name": "cli-starter-discord-bot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "discord.js": "14.21.0"
+  }
+}
