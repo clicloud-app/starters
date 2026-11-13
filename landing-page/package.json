@@ -1,0 +1,8 @@
+{
+  "name": "cli-starter-landing-page",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
