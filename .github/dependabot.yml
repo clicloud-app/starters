@@ -1,0 +1,11 @@
+# For the clicloud-app/starters repository (this folder is published as its root).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directories: ["/nextjs-postgres", "/discord-bot", "/waitlist", "/ai-chat", "/landing-page"]
+    schedule: { interval: weekly, day: monday }
+    groups:
+      minor-and-patch: { update-types: [minor, patch] }
+  - package-ecosystem: pip
+    directories: ["/fastapi", "/cron-worker"]
+    schedule: { interval: weekly, day: monday }

@@ -8,6 +8,8 @@ export async function GET() {
     await (await db()).query("SELECT 1");
     return Response.json({ ok: true });
   } catch (e) {
-    return Response.json({ ok: false, error: String(e.message ?? e) }, { status: 503 });
+    // The details go to the logs, not to whoever asked: they can name hosts and users.
+    console.error("health check: database unreachable", e);
+    return Response.json({ ok: false, error: "database unreachable" }, { status: 503 });
   }
 }

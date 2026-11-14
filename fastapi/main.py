@@ -1,8 +1,10 @@
 """A FastAPI app on CLI, storing items in Postgres (DATABASE_URL comes from the template's database)."""
+import logging
 import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse
 from psycopg_pool import ConnectionPool
 from pydantic import BaseModel, Field
 
@@ -27,8 +29,13 @@ class NewItem(BaseModel):
 
 @app.get("/health")
 def health():
-    with pool.connection() as conn:
-        conn.execute("SELECT 1")
+    try:
+        with pool.connection() as conn:
+            conn.execute("SELECT 1")
+    except Exception:
+        # The details go to the logs, not to whoever asked: they can name hosts and users.
+        logging.exception("health check: database unreachable")
+        return JSONResponse({"ok": False, "error": "database unreachable"}, status_code=503)
     return {"ok": True}
 
 

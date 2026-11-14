@@ -14,3 +14,19 @@ public repository `clicloud-app/starters`; each template points at one subfolder
 | `ai-chat` | AI chatbot | A chat page that calls an OpenAI-compatible model (CLI's AI models or your key) |
 
 Every app listens on `$PORT` and answers `GET /health`, which is how CLI knows it's up.
+
+## Versions and security
+
+- Node starters pin exact versions with a `package-lock.json` and Node 22 (`.nvmrc`, `engines`).
+  Python starters pin every dependency with hashes in `requirements.txt` (made from
+  `requirements.in` with `pip-compile --generate-hashes`) and Python 3.13 (`.python-version`).
+- `npm audit` and `pip-audit` report no known vulnerabilities as of 13 November 2026. Re-run them,
+  and update, before each release of this repository; Dependabot opens the PRs.
+- Health checks say whether the database is reachable, never why: the details go to the app's logs.
+
+## Before real traffic
+
+These are demos. The notes page (`nextjs-postgres`) and the `/items` endpoint (`fastapi`) accept
+writes from anyone who finds the URL. Add sign-in (CLI's app auth, or your own) before you put
+anything real behind them. The waitlist's `/admin` is protected by the `ADMIN_KEY` variable:
+set a long one.
