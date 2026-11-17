@@ -11,6 +11,7 @@ public repository `clicloud-app/starters`; each template points at one subfolder
 | `cron-worker` | Cron worker | A Python job CLI runs on a schedule, with a small health endpoint |
 | `landing-page` | Landing page | A one-page site (plain HTML and CSS) served by a tiny Node server |
 | `waitlist` | Waitlist + Postgres | A sign-up page saving emails to Postgres, with `/admin` and CSV download |
+| `saas` | SaaS starter | Next.js and Postgres with CLI sign-in (emailed codes), private notes per person, and a welcome email |
 | `ai-chat` | AI chatbot | A chat page that calls an OpenAI-compatible model (CLI's AI models or your key) |
 
 Every app listens on `$PORT` and answers `GET /health`, which is how CLI knows it's up.
